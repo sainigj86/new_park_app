@@ -152,6 +152,7 @@ public class MainActivity extends FlutterActivity {
             e.printStackTrace();
         }
     }
+    
 
     // @Override
     public void configureFlutterEngine(@NonNull FlutterEngine flutterEngine) {
@@ -233,38 +234,136 @@ public class MainActivity extends FlutterActivity {
     }
 
     // printing the receipt
-    void printReceipt() {
-        Log.e("printReceipt called = ", "yes");
-        if(printer == null){
-            Log.e("printerrrrr = ", "null");
-            printer = Printer.getInstance(mContext);
-            Log.e("printerrrrr = ", "initilized");
-        }else{
-            Log.e("printerrrrr = ", "not null");
-        }
-
+    public String printReceipt(){
         try {
+
             int ret;
             ret = printer.open();
-            if (ret != ERR_SUCCESS) {
-                return;
+            if(ret != ERR_SUCCESS){
+                Log.e("yhf","open failed"+ String.format(" errCode = 0x%x\n" , ret) );
+                return "";
+            }
+
+            ret = printer.startCaching();
+            if(ret != ERR_SUCCESS){
+                Log.e("yhf","startCaching failed"+ String.format(" errCode = 0x%x\n" , ret) );
+                return "";
+            }
+
+            ret = printer.setGray(3);
+            if(ret != ERR_SUCCESS){
+                Log.e("yhf","startCaching failed"+ String.format(" errCode = 0x%x\n" , ret) );
+                return "";
+            }
+
+            PrintStatus printStatus = new PrintStatus();
+            ret = printer.getStatus(printStatus);
+            if(ret != ERR_SUCCESS){
+                Log.e("yhf","getStatus failed"+ String.format(" errCode = 0x%x\n" , ret) );
+                return "";
+            }
+
+            Log.e("yhf","Temperature = "+ printStatus.getmTemperature() + "\n" );
+            Log.e("yhf","Gray = "+ printStatus.getmGray() + "\n" );
+            if(!printStatus.getmIsHavePaper()){
+                Log.e("yhf","Printer out of paper\n");
+                return "";
+            }
+
+            printer.setAlignStyle(PRINT_STYLE_CENTER);
+            printer.printStr("MICHAEL KORS\n");
+
+            printer.setAlignStyle(PRINT_STYLE_LEFT);
+            printer.printStr("Please retain this receipt\n");
+            printer.printStr("for your exchange.\n");
+            printer.printStr("this gift was thoughtfully purchased\n");
+            printer.printStr("for you at Michael Kors Chinook Centre.\n");
+
+            ret = printer.getUsedPaperLenManage();
+            if(ret < 0){
+                Log.e("yhf","getUsedPaperLenManage failed"+ String.format(" errCode = 0x%x\n" , ret) );
+            }
+
+
+            Bitmap bitmap = Bitmap.createBitmap(384, 400, Bitmap.Config.RGB_565);
+
+            int k_CurX = 0;
+            int k_CurY = 0;
+            int k_TextSize = 24;
+            paint = new Paint();
+            paint.setTextSize(k_TextSize);
+            paint.setColor(Color.BLACK);
+            Canvas canvas = new Canvas(bitmap);
+            bitmap.eraseColor(Color.parseColor("#FFFFFF"));
+
+            Paint.FontMetrics fm = paint.getFontMetrics();
+            int k_LineHeight = (int)ceil(fm.descent-fm.ascent);
+            String displayStr = "MICHAEL KORS";
+            int lineWidth = getTextWidth(displayStr);
+            k_CurX = (384-lineWidth)/2;
+            canvas.drawText(displayStr, k_CurX, k_CurY + k_TextSize, paint);
+            k_CurY += k_LineHeight+5;
+            displayStr = "Please retain this receipt";
+            k_CurX = 0;
+            canvas.drawText(displayStr, k_CurX, k_CurY + k_TextSize, paint);
+            k_CurY += k_LineHeight;
+            displayStr = "for your exchange.";
+            canvas.drawText(displayStr, k_CurX, k_CurY + k_TextSize, paint);
+            k_CurY += k_LineHeight;
+
+            displayStr = "this gift was thoughtfully purchased";
+            canvas.drawText(displayStr, k_CurX, k_CurY + k_TextSize, paint);
+            k_CurY += k_LineHeight;
+
+            displayStr = "for you at Michael Kors Chinook ";
+            canvas.drawText(displayStr, k_CurX, k_CurY + k_TextSize, paint);
+            k_CurY += k_LineHeight;
+
+            displayStr = "Centre.";
+            canvas.drawText(displayStr, k_CurX, k_CurY + k_TextSize, paint);
+            k_CurY += k_LineHeight;
+
+
+            Bitmap newbitmap = Bitmap.createBitmap(bitmap, 0, 0, 384, k_CurY);
+
+            ret = printer.printBmp(newbitmap);
+            if(ret != ERR_SUCCESS){
+                Log.e("yhf","printBmp failed"+ String.format(" errCode = 0x%x\n" , ret) );
+                return "";
+            }
+
+            if(bitmap != null && !bitmap.isRecycled()){
+                Bitmap mFreeBitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
+                canvas.setBitmap(mFreeBitmap);
+                canvas = null;
+                // canvas.drawColor(0, PorterDuff.Mode.CLEAR);
+                bitmap.recycle();
+                bitmap = null;
+                paint.setTypeface(null);
+                paint = null;
+            }
+            if(newbitmap != null && !newbitmap.isRecycled()){
+                newbitmap.recycle();
+                newbitmap = null;
             }
 
             printer.print(new OnPrinterCallback() {
                 @Override
                 public void onSuccess() {
+                    Log.e("yhf","print success\n");
                     printer.feed(32);
                 }
 
                 @Override
                 public void onError(int i) {
+                    Log.e("yhf","printBmp failed"+ String.format(" errCode = 0x%x\n", i) );
                 }
             });
-            
 
         } catch (Exception e) {
-            Log.e("printerrrrr = ", "failed = "+e);
+            e.printStackTrace();
         }
+        return "";
     }
 
     private static int getTextWidth(String str) {

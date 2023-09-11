@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, unused_catch_clause
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -32,13 +34,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   static const platform = MethodChannel('com.example.demo_test/printReceipt');
+
   Future<void> doPrint() async {
     try {
       await platform.invokeMethod('printReceipt');
     } on PlatformException catch (e) {
-      print("platform exception");
+      print("Error printing receipt: $e");
     }
   }
 
@@ -56,7 +58,6 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               'You have pushed the button this many times:',
             ),
-            
           ],
         ),
       ),

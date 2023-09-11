@@ -1,0 +1,21 @@
+com.example.new_park_app-appcompat-1.2.0-0 C:\Users\hp\.gradle\caches\transforms-3\09a71f45a2f110948b735c42a8fac7af\transformed\appcompat-1.2.0\res
+com.example.new_park_app-jetified-window-1.0.0-beta04-1 C:\Users\hp\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\res
+com.example.new_park_app-cardview-1.0.0-2 C:\Users\hp\.gradle\caches\transforms-3\391dbc4c601d40f71df8c0bc4da55bcb\transformed\cardview-1.0.0\res
+com.example.new_park_app-constraintlayout-2.0.4-3 C:\Users\hp\.gradle\caches\transforms-3\5a29a502c34a5ccc14a61c28cd86eb90\transformed\constraintlayout-2.0.4\res
+com.example.new_park_app-jetified-annotation-experimental-1.1.0-4 C:\Users\hp\.gradle\caches\transforms-3\6c0c163cc77ae6c91f9f7dfcd179c29c\transformed\jetified-annotation-experimental-1.1.0\res
+com.example.new_park_app-core-1.6.0-5 C:\Users\hp\.gradle\caches\transforms-3\7e9df2ac2213a6bd3cef0f2f27870d79\transformed\core-1.6.0\res
+com.example.new_park_app-recyclerview-1.0.0-6 C:\Users\hp\.gradle\caches\transforms-3\8cac8153a5b25cfff8a48628e2d1e62d\transformed\recyclerview-1.0.0\res
+com.example.new_park_app-jetified-window-java-1.0.0-beta04-7 C:\Users\hp\.gradle\caches\transforms-3\ae81e06d24c799147c26814497a2a305\transformed\jetified-window-java-1.0.0-beta04\res
+com.example.new_park_app-coordinatorlayout-1.0.0-8 C:\Users\hp\.gradle\caches\transforms-3\c0c5f8382331f2d900d2cb549c45e898\transformed\coordinatorlayout-1.0.0\res
+com.example.new_park_app-material-1.0.0-9 C:\Users\hp\.gradle\caches\transforms-3\c1f1a96409ca2596d82b517354480cce\transformed\material-1.0.0\res
+com.example.new_park_app-jetified-appcompat-resources-1.2.0-10 C:\Users\hp\.gradle\caches\transforms-3\d1e7acf1aa2051d3be77ae7ecbe61dff\transformed\jetified-appcompat-resources-1.2.0\res
+com.example.new_park_app-transition-1.0.0-11 C:\Users\hp\.gradle\caches\transforms-3\d939481bc6dd0b0bdd5ba36bbf689b3a\transformed\transition-1.0.0\res
+com.example.new_park_app-media-1.0.0-12 C:\Users\hp\.gradle\caches\transforms-3\d9fefd3231d7c549dee86f94a8a71d09\transformed\media-1.0.0\res
+com.example.new_park_app-debug-13 D:\Flutter\New folder\new_park_app\android\app\src\debug\res
+com.example.new_park_app-main-14 D:\Flutter\New folder\new_park_app\android\app\src\main\res
+com.example.new_park_app-pngs-15 D:\Flutter\New folder\new_park_app\build\app\generated\res\pngs\debug
+com.example.new_park_app-resValues-16 D:\Flutter\New folder\new_park_app\build\app\generated\res\resValues\debug
+com.example.new_park_app-rs-17 D:\Flutter\New folder\new_park_app\build\app\generated\res\rs\debug
+com.example.new_park_app-mergeDebugResources-18 D:\Flutter\New folder\new_park_app\build\app\intermediates\incremental\debug\mergeDebugResources\merged.dir
+com.example.new_park_app-mergeDebugResources-19 D:\Flutter\New folder\new_park_app\build\app\intermediates\incremental\debug\mergeDebugResources\stripped.dir
+com.example.new_park_app-merged_res-20 D:\Flutter\New folder\new_park_app\build\app\intermediates\merged_res\debug
